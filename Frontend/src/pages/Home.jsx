@@ -60,11 +60,12 @@ const Home = () => {
     if (!title) return;
 
     try {
-      const response = await axios.post("https://jarvis-ai-chatbot-backend.onrender.com/api/chat/",
+      const response = await axios.post("https://jarvis-ai-chatbot-backend.onrender.com/api/chat",
         { title },
         { withCredentials: true }
       );
       const chat = response.data?.chat;
+      console.log(chat);
       if (!chat || !chat._id) {
         console.error("Invalid chat data received:", response.data);
         return;
