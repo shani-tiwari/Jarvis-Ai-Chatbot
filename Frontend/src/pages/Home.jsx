@@ -45,7 +45,7 @@ const Home = () => {
   //   if (title) title = title.trim();
   //   if (!title) return
 
-  //   const response = await axios.post("http://localhost:3000/api/chat",
+  //   const response = await axios.post("https://jarvis-ai-chatbot-backend.onrender.com/api/chat",
   //     { title },
   //     { withCredentials: true }
   //   )
@@ -59,7 +59,7 @@ const Home = () => {
     if (!title) return;
 
     try {
-      const response = await axios.post("http://localhost:3000/api/chat",
+      const response = await axios.post("https://jarvis-ai-chatbot-backend.onrender.com/api/chat",
         { title },
         { withCredentials: true }
       );
@@ -81,12 +81,12 @@ const Home = () => {
   // Ensure at least one chat exists initially
   // useEffect(() => {
   //   axios
-  //     .get("http://localhost:3000/api/chat", { withCredentials: true })
+  //     .get("https://jarvis-ai-chatbot-backend.onrender.com/api/chat", { withCredentials: true })
   //     .then((response) => {
   //       dispatch(setChats(response.data.chats.reverse()));
   //     });
 
-  //   const tempSocket = io("http://localhost:3000", {
+  //   const tempSocket = io("https://jarvis-ai-chatbot-backend.onrender.com", {
   //     withCredentials: true,
   //   });
 
@@ -109,7 +109,7 @@ const Home = () => {
   useEffect(() => {
     const fetchChats = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/chat/", {
+        const response = await axios.get("https://jarvis-ai-chatbot-backend.onrender.com/api/chat/", {
           withCredentials: true,
         });
         dispatch(setChats(response.data.chats.reverse()));
@@ -119,7 +119,7 @@ const Home = () => {
     };
     fetchChats();
 
-    const tempSocket = io("http://localhost:3000", { withCredentials: true });
+    const tempSocket = io("https://jarvis-ai-chatbot-backend.onrender.com", { withCredentials: true });
 
     tempSocket.on("ai-response", (messagePayload) => {
       setMessages((prevMessages) => [
@@ -164,7 +164,7 @@ const Home = () => {
 
   const getMessages = async (chatId) => {
     const response = await axios.get(
-      `http://localhost:3000/api/chat/messages/${chatId}`,
+      `https://jarvis-ai-chatbot-backend.onrender.com/api/chat/messages/${chatId}`,
       { withCredentials: true }
     );
 
