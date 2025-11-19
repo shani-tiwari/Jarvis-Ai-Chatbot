@@ -28,11 +28,10 @@ const Register = () => {
         }, {
             withCredentials: true
         }).then((res) => {
-            // console.log(res);
             navigate("/");
         }).catch((err) => {
             console.error(err);
-            alert('Registration failed (placeholder)');
+            alert('Registration failed');
         });
 
         try {
