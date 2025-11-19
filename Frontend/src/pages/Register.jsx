@@ -33,14 +33,14 @@ const Register = () => {
             console.error(err);
         });
 
-        try {
-            // Placeholder: integrate real registration logic / API call.
+        // try {
+        //     // Placeholder: integrate real registration logic / API call.
 
-        } catch (err) {
-            console.error(err);
-        } finally {
-            setSubmitting(false);
-        }
+        // } catch (err) {
+        //     console.error(err);
+        // } finally {
+        //     setSubmitting(false);
+        // }
     }
 
     return (
