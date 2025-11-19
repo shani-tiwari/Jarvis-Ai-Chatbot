@@ -60,7 +60,7 @@ const Home = () => {
     if (!title) return;
 
     try {
-      const response = await axios.post("https://jarvis-ai-chatbot-backend.onrender.com/api/chat",
+      const response = await axios.post("https://jarvis-ai-chatbot-backend.onrender.com/api/chat/",
         { title },
         { withCredentials: true }
       );
@@ -115,8 +115,8 @@ const Home = () => {
           withCredentials: true,
         });
         dispatch(setChats(response.data.chats.reverse()));
-      } catch (error) {
-        console.error("Failed to fetch chats:", error);
+      } catch (e) {
+        console.error("Failed to fetch chats:");
       }
     };
     fetchChats();
