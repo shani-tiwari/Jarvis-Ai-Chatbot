@@ -7,20 +7,21 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-const allowedOrigins = [
+export const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:3000",
   "https://jarvis-ai-chatbot.onrender.com",
    "https://jarvis-ai-chatbot-backend.onrender.com",
 ];
 app.use(cors({
-    origin: (origin, callback) => {
-        if (!origin) return callback(null, true);
-        if (allowedOrigins.includes(origin)) {
-        return callback(null, true);
-        }
-        callback(new Error("Not allowed by CORS"));
-    },
+    // origin: (origin, callback) => {
+    //     if (!origin) return callback(null, true);
+    //     if (allowedOrigins.includes(origin)) {
+    //     return callback(null, true);
+    //     }
+    //     callback(new Error("Not allowed by CORS"));
+    // },
+    origin: "https://jarvis-ai-chatbot.onrender.com",
     credentials: true,
 }));
 

@@ -5,13 +5,14 @@ const userModel = require("../models/user.model");
 const messageModel = require("../models/message.model");
 const { generateResponse, generateVector } = require("../services/ai.service")
 const { createMemory, queryMemory } = require("../services/vector.service")
+const allowedOrigins = require('../app');
 
 
 function initSocketServer(httpServer) {
 
     const io = new Server(httpServer, {
         cors: { 
-            origin: "https://jarvis-ai-chatbot.onrender.com",
+            origin: allowedOrigins,
             credentials: true
          }
     });
