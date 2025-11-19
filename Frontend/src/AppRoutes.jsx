@@ -14,11 +14,19 @@ const AppRoutes = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/"                  element={isAuthenticated ? <Home /> : <Register />} />
+        {isAuthenticated ? (
+          <Routes>
+            <Route path="/" element={<Home />} />
+          </Routes>
+        ) : (
+          <Routes>
+            <Route path="/api/auth/register" element={<Register />} />
+          </Routes>
+        )}
         <Route path="/api/auth/register" element={<Register />} />
-        <Route path="/api/auth/login"    element={<Login />} />
+        <Route path="/api/auth/login" element={<Login />} />
       </Routes>
-     </BrowserRouter>
+    </BrowserRouter>
   );
 };
 
