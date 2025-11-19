@@ -6,6 +6,7 @@ async function authUser(req, res, next) {
     if(!token) return res.status(401).json({msg:'unauthorized...'});
 
     try {
+        console.log('user auth happening');
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         const user = await userModel.findById(decoded.id);
         console.log(user)

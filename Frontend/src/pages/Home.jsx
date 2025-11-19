@@ -199,7 +199,7 @@ const Home = () => {
       />
 
       <main className="chat-main" role="main">
-        <p className="chip"> • <Link to="/register" >Register / Login</Link> </p>
+        <p className="chip"> • <Link to="/register" >👤</Link> </p>
         {messages.length === 0 && (
           <div className="chat-welcome" aria-hidden="true">
             <h1>JARVIS</h1>
