@@ -73,7 +73,7 @@ const Register = () => {
                         {submitting ? 'Creating...' : 'Create Account'}
                     </button>
                 </form>
-                <p className="auth-alt">Already have an account? <Link to="/api/auth/login">Sign in</Link></p>
+                <p className="auth-alt">Already have an account? <Link to="/login">Sign in</Link></p>
             </div>
         </div>
     );

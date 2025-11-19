@@ -53,7 +53,7 @@ const Login = () => {
                         {submitting ? 'Signing in...' : 'Sign in'}
                     </button>
                 </form>
-                <p className="auth-alt">Need an account? <Link to="/api/auth/register">Create one</Link></p>
+                <p className="auth-alt">Need an account? <Link to="/register">Create one</Link></p>
             </div>
         </div>
     );
