@@ -60,7 +60,7 @@ const Home = () => {
     if (!title) return;
 
     try {
-      const response = await axios.post("https://jarvis-ai-chatbot-backend.onrender.com/api/chat",
+      const response = await axios.post("https://jarvis-ai-chatbot-backend.onrender.com/api/chat/",
         { title },
         { withCredentials: true }
       );
