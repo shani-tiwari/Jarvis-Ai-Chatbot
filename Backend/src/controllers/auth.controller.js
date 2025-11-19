@@ -23,7 +23,6 @@ async function registerUser(req, res) {
      res.cookie("token", token, {
         sameSite: "None",
         secure: true,
-        domain: ".onrender.com"
     });
  
      res.status(201).json({
@@ -33,28 +32,32 @@ async function registerUser(req, res) {
          }
      })
    } catch (e) {
-    console.log(e.response.data);
+    // console.log(e.response.data);
+    alert('Problem in registeration');
    }
 
 };
 
 async function loginUser(req, res) {
-    const {email, password} = req.body;
-
-    const user = await userModel.findOne({email});
-    if(!user) return res.status(400).json({msg:'invaild creadientials'});
-
-    const isPdvaild = await bcrypt.compare(password, user.password);
-    if(!isPdvaild) return res.status(400).json({msg:"invalid creadientials"});
-
-    const token = jwt.sign({id:user._id}, process.env.JWT_SECRET);
-    res.cookie('token', token, {
-        sameSite: "None",
-        secure: true,
-        domain: ".onrender.com"
-    });
-
-    res.status(200).json({msg:'okay', email: user.email, id:user._id, fullName: user.fullName});
+    try {
+        const {email, password} = req.body;
+    
+        const user = await userModel.findOne({email});
+        if(!user) return res.status(400).json({msg:'invaild creadientials'});
+    
+        const isPdvaild = await bcrypt.compare(password, user.password);
+        if(!isPdvaild) return res.status(400).json({msg:"invalid creadientials"});
+    
+        const token = jwt.sign({id:user._id}, process.env.JWT_SECRET);
+        res.cookie('token', token, {
+            sameSite: "None",
+            secure: true,
+        });
+    
+        res.status(200).json({msg:'okay', email: user.email, id:user._id, fullName: user.fullName});
+    } catch (error) {
+        alert('Problem in login');
+    }
 }
 
 
