@@ -17,14 +17,7 @@ const Register = () => {
     async function handleSubmit(e) {
         e.preventDefault();
         setSubmitting(true);
-        console.log({
-            email: form.email,
-            fullName: {
-                firstName: form.firstName,
-                lastName: form.lastName
-            },
-            password: form.password
-        });
+
         axios.post("https://jarvis-ai-chatbot-backend.onrender.com/api/auth/register", {
             email: form.email,
             fullName: {
@@ -38,7 +31,6 @@ const Register = () => {
             navigate("/");
         }).catch((err) => {
             console.error(err);
-            alert('Registration failed');
         });
 
         try {
