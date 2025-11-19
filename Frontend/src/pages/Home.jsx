@@ -65,9 +65,8 @@ const Home = () => {
         { withCredentials: true }
       );
       const chat = response.data?.chat;
-      console.log(chat);
       if (!chat || !chat._id) {
-        console.error("Invalid chat data received:", response.data);
+        console.error("Invalid chat data received:");
         return;
       }
 
@@ -190,9 +189,11 @@ const Home = () => {
         chats={chats}
         activeChatId={activeChatId}
         onSelectChat={(id) => {
-          dispatch(selectChat(id));
-          setSidebarOpen(false);
-          getMessages(id);
+          if (id !== activeChatId) { // Prevent redundant selections
+          dispatch(selectChat(id)); // Update the active chat in Redux
+          setSidebarOpen(false); // Close the sidebar
+          getMessages(id); // Fetch messages for the selected chat
+        }
         }}
         onNewChat={handleNewChat}
         open={sidebarOpen}
