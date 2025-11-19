@@ -24,14 +24,11 @@ const Login = () => {
             password: form.password
         },
         {
-            withCredentials: true, // coz we have to set cookies 
-            headers: {
-                'Content-Type': 'application/json'
-            }
+            withCredentials: true, 
         }
         )
-        .then((res)  => { navigate("/");        })
-        .catch((err) => { console.error(err.response.data);   })
+        .then(()     => { navigate("/"); })
+        .catch((err) => { console.error(err.response.data);  })
         .finally(()  => { setSubmitting(false); });
 
     }
