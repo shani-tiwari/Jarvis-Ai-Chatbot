@@ -4,7 +4,7 @@ import axios from 'axios';
 import '../App.css';
 
 const Register = () => {
-    const [ form, setForm ] = useState({ email: '', firstname: '', lastname: '', password: '' });
+    const [ form, setForm ] = useState({ email: '', firstName: '', lastName: '', password: '' });
     const [ submitting, setSubmitting ] = useState(false);
     const navigate = useNavigate();
 
@@ -17,12 +17,19 @@ const Register = () => {
     async function handleSubmit(e) {
         e.preventDefault();
         setSubmitting(true);
-
+        console.log({
+            email: form.email,
+            fullName: {
+                firstName: form.firstName,
+                lastName: form.lastName
+            },
+            password: form.password
+        });
         axios.post("https://jarvis-ai-chatbot-backend.onrender.com/api/auth/register", {
             email: form.email,
             fullName: {
-                firstName: form.firstname,
-                lastName: form.lastname
+                firstName: form.firstName,
+                lastName: form.lastName
             },
             password: form.password
         }, {
@@ -59,11 +66,11 @@ const Register = () => {
                     <div className="grid-2">
                         <div className="field-group">
                             <label htmlFor="firstname">First name</label>
-                            <input id="firstname" name="firstname" placeholder="Jane" value={form.firstname} onChange={handleChange} required />
+                            <input id="firstname" name="firstName" placeholder="Jane" value={form.firstName} onChange={handleChange} required />
                         </div>
                         <div className="field-group">
                             <label htmlFor="lastname">Last name</label>
-                            <input id="lastname" name="lastname" placeholder="Doe" value={form.lastname} onChange={handleChange} required />
+                            <input id="lastname" name="lastName" placeholder="Doe" value={form.lastName} onChange={handleChange} required />
                         </div>
                     </div>
                     <div className="field-group">
