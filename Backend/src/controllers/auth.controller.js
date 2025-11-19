@@ -2,7 +2,7 @@ const userModel = require('../models/user.model');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-async function registerUser(req, res, next) {
+async function registerUser(req, res) {
 
     const {fullName: {firstName, lastName}, email, password} = req.body;
 
@@ -19,7 +19,7 @@ async function registerUser(req, res, next) {
     });
 
     const token = jwt.sign({id:user._id}, process.env.JWT_SECRET);
-    res.cookie("token", token);
+    res.cookie("token", token, {sameSite: "None", secure: true});
 
     res.status(201).json({
         msg: 'okkkk',
@@ -30,7 +30,7 @@ async function registerUser(req, res, next) {
 
 };
 
-async function loginUser(req, res, next) {
+async function loginUser(req, res) {
     const {email, password} = req.body;
 
     const user = await userModel.findOne({email});
@@ -40,7 +40,7 @@ async function loginUser(req, res, next) {
     if(!isPdvaild) return res.status(400).json({msg:"invalid creadientials"});
 
     const token = jwt.sign({id:user._id}, process.env.JWT_SECRET);
-    res.cookie('token', token);
+    res.cookie('token', token, {sameSite: "None", secure: true});
 
     res.status(200).json({msg:'okay', email: user.email, id:user._id, fullName: user.fullName});
 }
