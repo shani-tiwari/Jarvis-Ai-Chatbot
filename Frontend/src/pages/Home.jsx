@@ -16,6 +16,7 @@ import {
   addUserMessage,
   setChats,
 } from "../store/chatSlice.js";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const dispatch                      = useDispatch();
@@ -200,7 +201,7 @@ const Home = () => {
       <main className="chat-main" role="main">
         {messages.length === 0 && (
           <div className="chat-welcome" aria-hidden="true">
-            <div className="chip">Early Preview</div>
+            <p className="chip"> • <Link to="/api/auth/register" >Register / Login</Link> </p>
             <h1>JARVIS</h1>
             <h1>Select/Create chat to start searching.</h1>
             <p>

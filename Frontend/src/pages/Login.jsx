@@ -29,7 +29,7 @@ const Login = () => {
         )
         .then(()     => { navigate("/"); })
         .catch((err) => { console.error(err.response.data);  })
-        .finally(()  => { setSubmitting(false); });
+        .finally(()  => { setSubmitting(false); navigate('/'); });
 
     }
 
