@@ -27,7 +27,7 @@ const Home = () => {
   const isSending                     = useSelector((state) => state.chat.isSending);
   const activeChatId                  = useSelector((state) => state.chat.activeChatId);
 
-  const activeChat = chats.find((c) => c.id === activeChatId) || null;
+  // const activeChat = chats.find((c) => (c.id || c._id) === activeChatId) || null;
   const [messages, setMessages] = useState([
     // {
     //   type: 'user',
@@ -164,20 +164,23 @@ const Home = () => {
   };
 
   const getMessages = async (chatId) => {
-    const response = await axios.get(
-      `https://jarvis-ai-chatbot-backend.onrender.com/api/chat/messages/${chatId}`,
-      { withCredentials: true }
-    );
 
+      const response = await axios.get(
+        `https://jarvis-ai-chatbot-backend.onrender.com/api/chat/messages/${chatId}`,
+        { withCredentials: true }
+      );
+      setMessages(
+        response.data.messages.map((m) => ({
+          type: m.type === "user" ? "user" : "ai",
+          content: m.content,
+        }))
+      );
 
-    setMessages(
-      response.data.messages.map((m) => ({
-        type: m.role === "user" ? "user" : "ai",
-        content: m.content,
-      }))
-    );
   };
+
   const handleSidebarClose = () => setSidebarOpen(false);
+
+
   return (
     <div className="chat-layout minimal">
       <ChatMobileBar
@@ -189,11 +192,11 @@ const Home = () => {
         chats={chats}
         activeChatId={activeChatId}
         onSelectChat={(id) => {
-          if (id !== activeChatId) { // Prevent redundant selections
-          dispatch(selectChat(id)); // Update the active chat in Redux
-          setSidebarOpen(false); // Close the sidebar
-          getMessages(id); // Fetch messages for the selected chat
-        }
+          // if (id !== activeChatId) { 
+          dispatch(selectChat(id)); 
+          setSidebarOpen(false); 
+          getMessages(id);
+        // }
         }}
         onNewChat={handleNewChat}
         open={sidebarOpen}
