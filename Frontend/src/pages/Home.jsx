@@ -192,11 +192,11 @@ const Home = () => {
         chats={chats}
         activeChatId={activeChatId}
         onSelectChat={(id) => {
-          // if (id !== activeChatId) { 
+          if (id !== activeChatId) { 
           dispatch(selectChat(id)); 
           setSidebarOpen(false); 
           getMessages(id);
-        // }
+        }
         }}
         onNewChat={handleNewChat}
         open={sidebarOpen}
