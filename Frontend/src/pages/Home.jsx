@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import ChatMobileBar from "../components/chat/ChatMobileBar.jsx";
 import ChatSidebar from "../components/chat/ChatSidebar.jsx";
@@ -23,7 +23,7 @@ const Home = () => {
   const [socket, setSocket]           = useState(null);
   const chats                         = useSelector((state) => state.chat.chats);
   const input                         = useSelector((state) => state.chat.input);
-  const [sidebarOpen, setSidebarOpen] = React.useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const isSending                     = useSelector((state) => state.chat.isSending);
   const activeChatId                  = useSelector((state) => state.chat.activeChatId);
 
@@ -198,11 +198,11 @@ const Home = () => {
         chats={chats}
         activeChatId={activeChatId}
         onSelectChat={(id) => {
-          // if (id !== activeChatId) { 
+          if (id !== activeChatId) { 
           dispatch(selectChat(id)); 
           setSidebarOpen(false); 
           //getMessages(id);  //  your latest state may not reflect the new value until the next render cycle.
-        // }
+        }
         }}
         onNewChat={handleNewChat}
         open={sidebarOpen}
