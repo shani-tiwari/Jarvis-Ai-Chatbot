@@ -65,6 +65,7 @@ const Home = () => {
         { withCredentials: true }
       );
       const chat = response.data?.chat;
+      console.log(chat)
       if (!chat || !chat._id) {
         console.error("Invalid chat data received:");
         return;
