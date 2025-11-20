@@ -177,6 +177,12 @@ const Home = () => {
       );
 
   };
+  useEffect(() => {
+    if (activeChatId) {
+      getMessages(activeChatId);
+    }
+  }, [activeChatId]);
+
 
   const handleSidebarClose = () => setSidebarOpen(false);
 
@@ -192,11 +198,11 @@ const Home = () => {
         chats={chats}
         activeChatId={activeChatId}
         onSelectChat={(id) => {
-          if (id !== activeChatId) { 
+          // if (id !== activeChatId) { 
           dispatch(selectChat(id)); 
           setSidebarOpen(false); 
-          getMessages(id);
-        }
+          //getMessages(id);  //  your latest state may not reflect the new value until the next render cycle.
+        // }
         }}
         onNewChat={handleNewChat}
         open={sidebarOpen}
