@@ -59,15 +59,12 @@ const Home = () => {
     let title = window.prompt("Enter a title for the new chat:").trim();
     if (!title) return;
 
-    console.log('going in try');
     try {
       const response = await axios.post("https://jarvis-ai-chatbot-backend.onrender.com/api/chat/",
         { title },
         { withCredentials: true }
       );
-      console.log(response.data);
       const chat = response.data?.chat;
-      console.log(chat);
       if (!chat || !chat._id) {
         console.error("Invalid chat data received:"); alert('chat data ?');
         return;
